@@ -5,8 +5,13 @@ const db = require('../data/db-config.js');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-
+router.get('/', async (req, res) => {
+    try {
+        const posts = await db('posts');
+        res.json(post);
+    } catch (err) {
+        res.status(500).json({ message: 'error getting posts', error: err });
+    };
 });
 
 router.get('/:id', (req, res) => {
